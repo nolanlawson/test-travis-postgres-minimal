@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "10"
+dist: bionic
+sudo: false
+services:
+  - postgresql
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
+      - postgresql-contrib-10
+before_install:
+  - psql -d template1 -U postgres -c "CREATE USER pinafore WITH PASSWORD 'pinafore' CREATEDB;"
+script: echo hello world
+branches:
+  only:
+    - master
